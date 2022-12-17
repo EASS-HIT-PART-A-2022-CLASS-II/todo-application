@@ -1,0 +1,23 @@
+CREATE DATABASE TodoDB;
+USE TodoDB;
+
+CREATE TABLE Todos(
+    TodoID INT NOT NULL AUTO_INCREMENT,
+    Title NVARCHAR(200),
+    CreateDate DATETIME NOT NULL,
+    ModifiedDate DATETIME NULL,
+    PRIMARY KEY(TodoID)
+);
+
+CREATE TABLE TodoItems(
+    TodoItemID INT NOT NULL AUTO_INCREMENT,
+    ItemText NVARCHAR(4000),
+    Completed BIT NOT NULL,
+    TodoID INT NOT NULL,
+    PRIMARY KEY(TodoItemID),
+    FOREIGN KEY (`TodoID`) REFERENCES `Todos`(`TodoID`) ON DELETE CASCADE
+);
+
+/*For testing*/
+INSERT INTO Todos(Title,CreateDate)
+VALUES("Some title","2022-11-26 17:23:00.000")
